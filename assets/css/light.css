@@ -1,0 +1,39 @@
+.c-Button:hover {
+    box-shadow: 0 3px 12px 0 rgba(60, 113, 235, 0.4);
+    background-color: #487fff;
+    color: #ffffff;
+}
+.c-File-button {
+    box-shadow: 0 3px 10px 0 rgba(60, 113, 235, 0.15);
+}
+.c-File-button:hover {
+    box-shadow: 0 3px 15px 0 rgba(60, 113, 235, 0.4);
+    background-color: #487fff;
+    color: #ffffff;
+}
+.c-Page {
+    background-color: #ebebeb;
+    color: #383838;
+}
+::-moz-selection {
+    background: #383838;
+    color: #ebebeb;
+}
+::selection {
+    background: #383838;
+    color: #ebebeb;
+}
+.c-Header-title {
+    color: #9c9c9c;
+}
+.c-Header-button {
+    background-color: #fff;
+    color: #383838;
+}
+.c-File:before {
+    background-color: #fff;
+    color: rgba(56, 56, 56, 0.3);
+}
+.c-File-meta {
+    color: #9c9c9c;
+}

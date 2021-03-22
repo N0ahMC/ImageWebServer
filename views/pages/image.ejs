@@ -1,51 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="background-color: #121212;" lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    
-        <!--
-        <meta name="twitter:card" content="photo">
-        <meta name="twitter:site" content="@n0ahmc">
-        <meta name="twitter:title" content="ScreenShot <%= path %><%= type %>">
-        <meta name="twitter:url" content="https://clipptic.com/FqBmSj">
-        <meta name="twitter:image" content="https://clipptic.com/FqBmSj/Screen%20on%202019-04-14%20at%2016.13.49.png">
 
-        Facebook 
-        <meta property="og:title" content="Screen on 2019-04-14 at 16.13.49.png">
-        <meta property="og:description" content="Captured with Clipptic.">
-        <meta property="og:url" content="https://clipptic.com/FqBmSj">
-        <meta property="og:image" content="https://clipptic.com/FqBmSj/Screen%20on%202019-04-14%20at%2016.13.49.png">
--->
         <title><%= path %><%= type %></title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <link rel="stylesheet" href="assets/css/custom.css">
+        <script src="https://kit.fontawesome.com/8d6367d1b9.js" crossorigin="anonymous"></script>
       </head>
     <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="assets/images/logo.png" width="50" alt="Logo">
-        </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
-      <form class="form-inline">
-        <a href="image/<%= path %><%= type %>" download>
-            <button class="btn btn-outline-success" type="button">Download</button>
-        </a>
-      </form>
-    </div>
-  </nav>
-        <div class="container">
-    <img src="image/<%= path %><%= type %>" class="img-fluid mx-auto d-block" alt="Image">
-</div>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="#">
+                <img src="assets/images/logo.png" alt="Logo">
+              </a>
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+          
+            <div class="navbar-menu">
+              <div class="navbar-end">
+                <div class="navbar-item">
+                  <div class="buttons">
+                    <a class="button is-link is-rounded" href="image/<%= path %><%= type %>" download>
+                      <span class="icon">
+                        <i class="fas fa-cloud-download-alt"></i>
+                      </span>
+                      <span><strong>Download</strong></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+            <a class="ss-image">
+                <img src="image/<%= path %><%= type %>" alt="Image">
+            </a>
+          <script>
+              document.addEventListener('DOMContentLoaded', () => {
+
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Check if there are any navbar burgers
+if ($navbarBurgers.length > 0) {
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+}
+
+});
+          </script>
     </body>
 </html>
