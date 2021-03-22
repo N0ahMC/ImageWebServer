@@ -63,6 +63,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(5656, () => {
-    console.log('http://localhost:5656')
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`)
 })

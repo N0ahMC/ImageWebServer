@@ -4,7 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><%= path %><%= type %></title>
+        <!-- Primary Meta Tags -->
+        <title><%= process.env.TITLE %></title>
+        <meta name="title" content="<%= process.env.TITLE %>">
+        <meta name="description" content="<%= process.env.DESCRIPTION %>">
+        <meta name="theme-color" content="<%= process.env.COLOR %>" />
+        <meta name="msapplication-TileColor" content="<%= process.env.COLOR %>" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="<%= process.env.DOMAIN %>/<%= path %><%= type %>">
+        <meta property="og:title" content="<%= process.env.TITLE %>">
+        <meta property="og:description" content="<%= process.env.DESCRIPTION %>">
+        <meta property="og:image" content="<%= process.env.DOMAIN %>/image/<%= path %><%= type %>">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="<%= process.env.DOMAIN %>/<%= path %><%= type %>">
+        <meta property="twitter:title" content="<%= process.env.TITLE %>">
+        <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
+        <meta property="twitter:image" content="<%= process.env.DOMAIN %>/image/<%= path %><%= type %>">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
         <link rel="stylesheet" href="assets/css/custom.css">
