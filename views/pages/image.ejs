@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+        <title><%= path %><%= type %></title>
+      </head>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.png" width="50" alt="Logo">
+                <a href="image/<%= path %><%= type %>" download>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="button">Download</button>
+                </a>
+            </a>
+            
+          </nav>
+    <img src="image/<%= path %><%= type %>" class="img-fluid mx-auto d-block" alt="Image">
+    </body>
+</html>
