@@ -38,7 +38,10 @@ app.post("/upload", (req, res) => {
       res.status(500).send(err);
     }
   });
-  
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.send("User-agent: *\nAllow: /$\nDisallow: /");
+})
 app.get('/:image', (req, res) => {
     types.forEach(i => {
         if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
@@ -61,10 +64,6 @@ app.get('/', (req, res) => {
     res.render('pages/index', {
         path: req.path.slice(1)
     })
-})
-app.get('/robots.txt', (req, res) => {
-  res.type('text/plain');
-  res.send("User-agent: *\nAllow: /$\nDisallow: /");
 })
 
 app.listen(process.env.PORT, () => {
