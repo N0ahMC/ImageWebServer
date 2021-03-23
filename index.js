@@ -62,6 +62,10 @@ app.get('/', (req, res) => {
         path: req.path.slice(1)
     })
 })
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send("User-agent: *\nAllow: /$\nDisallow: /");
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`)
