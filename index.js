@@ -50,18 +50,18 @@ app.get('/:image', (req, res) => {
         }
     });
     if (fs.existsSync(`images/${req.path.slice(1)}`) || fs.existsSync(`images/${req.path.slice(1)}.png`) || fs.existsSync(`images/${req.path.slice(1)}.jpg`) || fs.existsSync(`images/${req.path.slice(1)}.jpeg`)) {
-        res.render('pages/image', {
+        res.render('image', {
             path: Rpath,
             type: Rtype
         })
     } else {
-        res.render('pages/404', {
+        res.render('404', {
             path: req.path.slice(1)
         })
     }
 })
 app.get('/', (req, res) => {
-    res.render('pages/index', {
+    res.render('index', {
         path: req.path.slice(1)
     })
 })

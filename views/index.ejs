@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    
+    <!-- Primary Meta Tags -->
+    <title><%= process.env.TITLE %></title>
+    <meta name="title" content="<%= process.env.TITLE %>">
+    <meta name="description" content="<%= process.env.DESCRIPTION %>">
+    <meta name="theme-color" content="<%= process.env.COLOR %>">
+    <meta name="msapplication-TileColor" content="<%= process.env.COLOR %>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= process.env.DOMAIN %>">
+    <meta property="og:title" content="<%= process.env.TITLE %>">
+    <meta property="og:description" content="<%= process.env.DESCRIPTION %>">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<%= process.env.DOMAIN %>">
+    <meta property="twitter:title" content="<%= process.env.TITLE %>">
+    <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
+</head>
+    <body>
+
+    <style>
+        body {
+            background-color: #121212;
+        }
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-size: 50px;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0;
+            line-height: 1;
+            font-weight: 700;
+            opacity: 0.87;
+        }
+    </style>
+</head>
+<body>
+    <h1><%= process.env.TITLE || '📸 ShareX Image Server' %></h1>
+</body>
+</html>
