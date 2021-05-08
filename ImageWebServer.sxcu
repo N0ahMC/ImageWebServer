@@ -1,12 +1,12 @@
 {
-  "Name": "YOUR_SERVICE_NAME_HERE",
-  "DestinationType": "ImageUploader, TextUploader, FileUploader",
+  "Name": "ImageWebServer",
+  "DestinationType": "ImageUploader",
   "RequestType": "POST",
-  "RequestURL": "http://yourdomain.com/upload.php",
+  "RequestURL": "https://YOUR_DOMAIN.COM/upload",
   "FileFormName": "sharex",
   "Headers": {
     "key": "YOUR_KEY_HERE"
   },
   "ResponseType": "Text",
-  "URL": "http://yourdomain.com/i/$json:url$"
+  "URL": "https://YOUR_DOMAIN.COM/$json:url$"
 }
