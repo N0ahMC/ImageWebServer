@@ -58,6 +58,9 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm start
    ```
+6. ShareX Setup
+   1. Edit `ImageWebServer.sxcu` to include the key you set in `.env` and your domain.
+   2. Open the file with ShareX and select "Yes" to use it as your image uploader.
 
 <!-- LICENSE -->
 ## License
