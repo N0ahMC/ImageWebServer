@@ -4,8 +4,6 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -22,22 +20,21 @@
 </p>
 
 <!-- ABOUT THE PROJECT -->
+
 ## Examples
 
 ![Website](.github/screenshot.png)
 
 ![Discord Embed](.github/discord.png)
 
-
 ### Built With
 
-* [Express](https://expressjs.com/)
-* [EJS](https://ejs.co/)
-* [Bulma](https://bulma.io/)
-
-
+- [Express](https://expressjs.com/)
+- [EJS](https://ejs.co/)
+- [Bulma](https://bulma.io/)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -63,23 +60,22 @@ To get a local copy up and running follow these simple steps.
    2. Open the file with ShareX and select "Yes" to use it as your image uploader.
 
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Noah - N0ahMC#0001 on discord - noah@n0ahmc.com
 
 Project Link: [https://github.com/N0ahMC/ImageWebServer](https://github.com/N0ahMC/ImageWebServer)
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/N0ahMC/ImageWebServer.svg?style=for-the-badge
 [contributors-url]: https://github.com/N0ahMC/ImageWebServer/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/N0ahMC/ImageWebServer.svg?style=for-the-badge
