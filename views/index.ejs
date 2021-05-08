@@ -44,9 +44,30 @@
             font-weight: 700;
             opacity: 0.87;
         }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            opacity: 0.60;
+        }
+        a {
+            color: white;
+        }
+        a:hover {
+            color: #cccccc;
+        }
     </style>
 </head>
-<body>
-    <h1><%= process.env.TITLE || '📸 ShareX Image Server' %></h1>
-</body>
+    <body>
+        <h1><%= process.env.TITLE || '📸 Image Web Server' %></h1>
+    </body>
+    <footer>
+        <div class="footer">
+            <p>Made by <a href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
+          </div>
+    </footer>
 </html>
