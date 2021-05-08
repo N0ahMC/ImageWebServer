@@ -23,26 +23,34 @@
     <meta property="twitter:url" content="<%= process.env.DOMAIN %>">
     <meta property="twitter:title" content="<%= process.env.TITLE %>">
     <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
-</head>
-    <body>
 
     <style>
         body {
             background-color: #121212;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
         h1 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
             color: white;
             font-size: 50px;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 0;
-            line-height: 1;
             font-weight: 700;
             opacity: 0.87;
+        }
+        h2 {
+            color: white;
+            font-style: italic;
+            font-size: 30px;
+            opacity: 0.60;
+        }
+        .container {
+            height: 200px;
+            width: 100%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
         }
         .footer {
             position: fixed;
@@ -62,12 +70,13 @@
         }
     </style>
 </head>
-    <body>
+<body>
+    <div class="container">
         <h1><%= process.env.TITLE || '📸 Image Web Server' %></h1>
-    </body>
-    <footer>
-        <div class="footer">
-            <p>Made by <a href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
-          </div>
+        <h2><%= process.env.DESCRIPTION %></h2>
+    </div>
+    <footer class="footer">
+        <p>Made by <a href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
     </footer>
+</body>
 </html>

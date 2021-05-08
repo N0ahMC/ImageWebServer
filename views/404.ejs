@@ -23,26 +23,23 @@
     <meta property="twitter:url" content="<%= process.env.DOMAIN %>">
     <meta property="twitter:title" content="<%= process.env.TITLE %>">
     <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
-</head>
-    <body>
 
     <style>
         body {
             background-color: #121212;
             text-align: center;
-	        font-family: 'Avenir', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         h1 {
-            font-size: 100px;
-            font-weight: bold;
-            font-family: sans-serif;
             color: white;
+            font-size: 50px;
+            font-weight: 700;
             opacity: 0.87;
         }
         h2 {
-            font-size: 40px;
-            font-style: italic;
             color: white;
+            font-style: italic;
+            font-size: 30px;
             opacity: 0.60;
         }
         .container {
@@ -55,6 +52,22 @@
             right: 0;
             margin: auto;
         }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            opacity: 0.60;
+        }
+        a {
+            color: white;
+        }
+        a:hover {
+            color: #cccccc;
+        }
     </style>
 </head>
 <body>
@@ -62,5 +75,8 @@
         <h1>Error 404</h1>
         <h2>Page Not Found</h2>
     </div>
+    <footer class="footer">
+        <p>Made by <a href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
+    </footer>
 </body>
 </html>
