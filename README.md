@@ -86,4 +86,3 @@ Project Link: [https://github.com/N0ahMC/ImageWebServer](https://github.com/N0ah
 [issues-url]: https://github.com/N0ahMC/ImageWebServer/issues
 [license-shield]: https://img.shields.io/github/license/N0ahMC/ImageWebServer?style=for-the-badge
 [license-url]: https://github.com/N0ahMC/ImageWebServer/blob/main/LICENSE
-[product-screenshot]: .github/screenshot.png
