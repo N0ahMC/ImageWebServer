@@ -14,7 +14,7 @@ let Rpath = "";
 let Rtype = "";
 app.post("/upload", (req, res) => {
   try {
-    if (req.headers.key !== process.env.TOKEN) {
+    if (req.headers.key !== process.env.KEY) {
       return res.status(403).send({ status: 403, message: "Invalid token" });
     } else {
       if (!req.files) {
