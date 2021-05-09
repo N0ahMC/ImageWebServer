@@ -31,7 +31,7 @@
 
 - [Express](https://expressjs.com/)
 - [EJS](https://ejs.co/)
-- [Bulma](https://bulma.io/)
+- [Bootstrap](https://getbootstrap.com/)
 
 <!-- GETTING STARTED -->
 
