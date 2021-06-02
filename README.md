@@ -69,7 +69,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Noah - N0ahMC#0001 on discord - noah@n0ahmc.com
+Noah - Noahh#6969 on discord - noah@n0ahmc.com
 
 Project Link: [https://github.com/N0ahMC/ImageWebServer](https://github.com/N0ahMC/ImageWebServer)
 
