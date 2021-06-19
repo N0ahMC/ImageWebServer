@@ -8,14 +8,14 @@ body {
   transition: background 0.2s linear;
 }
 body.light {
-	background: #fafafa;
+  background: #fafafa;
 }
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 10%;
-  background-color: #393E46;
+  background-color: #393e46;
 }
 .btn {
   padding: 9px 25px;
@@ -23,7 +23,7 @@ header {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #edf0f1;
   text-decoration: none;
@@ -67,21 +67,21 @@ header {
   bottom: 10px;
   right: 10px;
   background-color: #000000;
-	border-radius: 50px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 50px;
-	width: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
 }
 
 .fa-moon {
-	color: #f1c40f;
+  color: #f1c40f;
   font-size: 25px;
 }
 
 .fa-sun {
-	color: #f39c12;
+  color: #f39c12;
   font-size: 25px;
 }
