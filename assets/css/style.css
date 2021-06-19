@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #121212;
+  transition: background 0.2s linear;
+}
+body.light {
+	background: #fafafa;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  background-color: #393E46;
+}
+.btn {
+  padding: 9px 25px;
+  background-color: rgb(50, 130, 184, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+}
+.btn:hover {
+  background-color: rgb(50, 130, 184, 0.8);
+}
+.mobile {
+  display: none;
+}
+@media only screen and (max-width: 800px) {
+  .btn {
+    display: none;
+  }
+  .mobile {
+    display: initial;
+  }
+}
+.ss-image {
+  display: inline-block;
+  height: 100%;
+}
+.ss-image > img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  max-height: 100%;
+  margin: auto;
+}
+.ss-image {
+  display: inline;
+  height: auto;
+}
+
+.toggler {
+  float: right;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #000000;
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	width: 50px;
+}
+
+.fa-moon {
+	color: #f1c40f;
+  font-size: 25px;
+}
+
+.fa-sun {
+	color: #f39c12;
+  font-size: 25px;
+}

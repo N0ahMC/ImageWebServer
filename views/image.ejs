@@ -25,30 +25,34 @@
         <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
         <meta property="twitter:image" content="<%= process.env.DOMAIN %>/image/<%= path %><%= type %>">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/8d6367d1b9.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="assets/css/custom.css">
+        <link rel="stylesheet" href="assets/css/style.css">
       </head>
-    <body style="background-color: #121212;">
-        <nav class="navbar navbar-dark bg-dark" aria-label="main navigation">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              <img src="assets/images/logo.png" alt="Logo" height="30">
-            </a>
-            <div class="text-end">
-              <a class="btn btn-primary" href="image/<%= path %><%= type %>" download>
+    <body>
+        <header>
+            <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="Logo" height="30"></a>
+              <a class="btn" href="image/<%= path %><%= type %>" download>
                 <span class="icon">
                   <i class="fas fa-cloud-download-alt"></i>
                 </span>
-                <span><strong>Download</strong></span>
-              </a>
-            </div>
-          </div>
-        </nav>
+                <strong>Download</strong></a>
+                <a class="mobile btn" href="image/<%= path %><%= type %>" download>
+                  <span class="icon">
+                    <i class="fas fa-cloud-download-alt"></i>
+                  </span></a>
+        </header>
         <a class="ss-image">
                 <img src="image/<%= path %><%= type %>" alt="Image">
             </a>
-
+            <div onclick="myFunction(this)" class="toggler">
+                <i id="icon" class="fas fa-moon"></i>
+            </div>
+            <script>
+              function myFunction(x) {
+                document.getElementById("icon").classList.toggle("fa-moon")
+                document.getElementById("icon").classList.toggle("fa-sun")
+                document.body.classList.toggle('light');
+              };
+            </script>
     </body>
 </html>
