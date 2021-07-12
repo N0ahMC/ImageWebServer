@@ -1,8 +1,12 @@
 const express = require("express");
+const helmet = require("helmet");
 require("dotenv").config();
 const app = express();
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
+const path = require("path");
+
+app.use(helmet());
 
 app.set("view engine", "ejs");
 
@@ -24,18 +28,21 @@ app.post("/upload", (req, res) => {
         });
       } else {
         let avatar = req.files.sharex;
-        avatar.mv("./images/" + avatar.name);
+        var safeSuffix = path.normalize(avatar.name).replace(/^(\.\.(\/|\\|$))+/, '');
+        console.log(safeSuffix)
+        var safeJoin = path.join("./images/", safeSuffix);
+        avatar.mv(safeJoin);
         //send response
         res.send({
           status: 200,
           message: "File just got uploaded!",
-          url: avatar.name,
+          url: safeSuffix,
         });
       }
     }
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json(e);
   }
 });
 app.get("/robots.txt", (req, res) => {
