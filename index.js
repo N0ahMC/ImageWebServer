@@ -28,11 +28,10 @@ app.post("/upload", (req, res) => {
         });
       } else {
         let avatar = req.files.sharex;
-        var safeSuffix = path
+        let safeSuffix = path
           .normalize(avatar.name)
           .replace(/^(\.\.(\/|\\|$))+/, "");
-        console.log(safeSuffix);
-        var safeJoin = path.join("./images/", safeSuffix);
+        let safeJoin = path.join("./images/", safeSuffix);
         avatar.mv(safeJoin);
         //send response
         res.send({
