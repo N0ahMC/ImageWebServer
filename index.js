@@ -37,12 +37,14 @@ app.post("/upload", (req, res) => {
           .replace(/^(\.\.(\/|\\|$))+/, "");
         let safeJoin = path.join("./images/", safeSuffix);
         avatar.mv(safeJoin);
-        //send response
         res.send({
           status: 200,
           message: "File just got uploaded!",
           url: safeSuffix,
         });
+        if (process.env.ADVANCED_LOGGING) {
+          console.log(`File ${safeSuffix} uploaded!`);
+        }
       }
     }
   } catch (e) {
@@ -61,16 +63,15 @@ app.get("/:image", (req, res) => {
       Rtype = i;
     }
   });
-  if (
-    fs.existsSync(`images/${req.path.slice(1)}`) ||
-    fs.existsSync(`images/${req.path.slice(1)}.png`) ||
-    fs.existsSync(`images/${req.path.slice(1)}.jpg`) ||
-    fs.existsSync(`images/${req.path.slice(1)}.jpeg`)
-  ) {
+  const fullPath = Rpath + Rtype;
+  if (fs.existsSync(`images/${fullPath}`)) {
     res.render("image", {
       path: Rpath,
       type: Rtype,
     });
+    if (process.env.ADVANCED_LOGGING && fullPath) {
+      console.log(`File ${fullPath} viewed!`);
+    }
   } else {
     res.render("404", {
       path: req.path.slice(1),
@@ -85,6 +86,6 @@ app.get("/", (req, res) => {
 
 app.listen(process.env.PORT, () => {
   console.log(
-    `Server is running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
+    `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
   );
 });
