@@ -6,7 +6,11 @@ const fs = require("fs");
 const fileUpload = require("express-fileupload");
 const path = require("path");
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 app.set("view engine", "ejs");
 
