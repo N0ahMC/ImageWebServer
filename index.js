@@ -29,6 +29,8 @@ app.use(fileUpload());
 const types = ["", ".png", ".jpg", ".jpeg"];
 let Rpath = "";
 let Rtype = "";
+let Rsize = "";
+let Rdate = "";
 app.post("/upload", (req, res) => {
   try {
     if (req.headers.key !== process.env.KEY) {
