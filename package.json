@@ -1,10 +1,10 @@
 {
   "name": "imagewebserver",
-  "version": "1.0.0",
-  "description": "Share images",
+  "version": "1.0.3",
+  "description": "A simple image uploader website for use with screenshot applications such as ShareX.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm i && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,7 +12,19 @@
     "url": "git+https://github.com/N0ahMC/ImageWebServer.git"
   },
   "keywords": [
-    "sharex"
+    "sharex",
+    "image-viewer",
+    "file-upload-server",
+    "image-uploader",
+    "file-uploader",
+    "hacktoberfest",
+    "image-server",
+    "sharex-upload",
+    "sharex-server",
+    "sharexserver",
+    "sharex-uploader",
+    "hacktoberfest2021",
+    "sharex-cdn"
   ],
   "author": "N0ahMC",
   "license": "MIT",
