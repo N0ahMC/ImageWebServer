@@ -47,10 +47,14 @@
             <div onclick="myFunction(this)" class="toggler">
                 <i id="icon" class="fas fa-moon"></i>
             </div>
+            <footer>
+              <span id="informations"><%= path %><%= type %> - <%= size %> - <%= uploadDate %></span>
+            </footer>
             <script>
               function myFunction(x) {
                 document.getElementById("icon").classList.toggle("fa-moon")
                 document.getElementById("icon").classList.toggle("fa-sun")
+                document.getElementById("informations").classList.toggle("light")
                 document.body.classList.toggle('light');
               };
             </script>

@@ -29,6 +29,8 @@ app.use(fileUpload());
 const types = ["", ".png", ".jpg", ".jpeg"];
 let Rpath = "";
 let Rtype = "";
+let Rsize = "";
+let Rdate = "";
 app.post("/upload", (req, res) => {
   try {
     if (req.headers.key !== process.env.KEY) {
@@ -68,8 +70,11 @@ app.get("/robots.txt", (req, res) => {
 app.get("/:image", (req, res) => {
   types.forEach((i) => {
     if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
+      const size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
       Rpath = req.path.slice(1);
       Rtype = i;
+      Rsize = size > 1000 ? `${Math.round(size * 100 / 1000)/100} MB` : `${Math.round(size * 100)/100} KB`;
+      Rdate = fs.statSync(`images/${req.path.slice(1)}${i}`).mtime.toLocaleDateString("en-US");
     }
   });
   const fullPath = Rpath + Rtype;
@@ -77,6 +82,8 @@ app.get("/:image", (req, res) => {
     res.render("image", {
       path: Rpath,
       type: Rtype,
+      size: Rsize,
+      uploadDate: Rdate,
     });
     if (process.env.ADVANCED_LOGGING && fullPath) {
       console.log(`File ${fullPath} viewed!`);
