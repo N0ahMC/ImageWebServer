@@ -70,6 +70,13 @@ app.get("/:image", (req, res) => {
     if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
       Rpath = req.path.slice(1);
       Rtype = i;
+      Rsize = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
+      if (Rsize > 1000) {
+        Rsize =  `${Math.round(Rsize * 100 / 1000)/100} MB`;
+      } else {
+        Rsize = `${Math.round(Rsize * 100)/100} KB`;
+      }
+      Rdate = fs.statSync(`images/${req.path.slice(1)}${i}`).mtime.toLocaleDateString("en-US");
     }
   });
   const fullPath = Rpath + Rtype;
@@ -77,6 +84,8 @@ app.get("/:image", (req, res) => {
     res.render("image", {
       path: Rpath,
       type: Rtype,
+      size: Rsize,
+      uploadDate: Rdate,
     });
     if (process.env.ADVANCED_LOGGING && fullPath) {
       console.log(`File ${fullPath} viewed!`);
