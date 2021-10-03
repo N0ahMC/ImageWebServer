@@ -31,7 +31,7 @@
 
 - [Express](https://expressjs.com/)
 - [EJS](https://ejs.co/)
-- [Bootstrap](https://getbootstrap.com/)
+- [Node.js](https://nodejs.org/en/)
 
 <!-- GETTING STARTED -->
 
