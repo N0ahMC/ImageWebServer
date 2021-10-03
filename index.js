@@ -70,14 +70,10 @@ app.get("/robots.txt", (req, res) => {
 app.get("/:image", (req, res) => {
   types.forEach((i) => {
     if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
+      let size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
       Rpath = req.path.slice(1);
       Rtype = i;
-      Rsize = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
-      if (Rsize > 1000) {
-        Rsize =  `${Math.round(Rsize * 100 / 1000)/100} MB`;
-      } else {
-        Rsize = `${Math.round(Rsize * 100)/100} KB`;
-      }
+      Rsize = size > 1000 ? `${Math.round(size * 100 / 1000)/100} MB` : `${Math.round(size * 100)/100} KB`;
       Rdate = fs.statSync(`images/${req.path.slice(1)}${i}`).mtime.toLocaleDateString("en-US");
     }
   });
