@@ -7,6 +7,8 @@ const fs = require("fs");
 const fileUpload = require("express-fileupload");
 const path = require("path");
 
+if (!process.env.PORT && !fs.existsSync("./.env")) return console.error("\x1b[31m", "[ERROR]", "\x1b[0m", "The .env file could not be found.\nPlease check README.md for more information")
+
 app.use(
   helmet({
     contentSecurityPolicy: false,
@@ -87,7 +89,6 @@ app.get("/", (req, res) => {
 
 app.listen(process.env.PORT, () => {
   console.log(
-    `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
     "\x1b[32m", "[READY]", "\x1b[0m", `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
   );
 });
