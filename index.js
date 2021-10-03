@@ -88,5 +88,6 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log(
     `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
+    "\x1b[32m", "[READY]", "\x1b[0m", `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
   );
 });
