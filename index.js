@@ -67,7 +67,7 @@ app.get("/:image", (req, res) => {
     }
   });
   const fullPath = Rpath + Rtype;
-  if (fs.existsSync(`images/${fullPath}`)) {
+  if (fullPath != "" && fs.existsSync(`images/${fullPath}`)) {
     res.render("image", {
       path: Rpath,
       type: Rtype,
