@@ -77,7 +77,7 @@ app.get("/:image", (req, res) => {
         size > 1000
           ? `${Math.round((size * 100) / 1000) / 100} MB`
           : `${Math.round(size * 100) / 100} KB`;
-          Fdate = fs
+      Fdate = fs
         .statSync(`images/${req.path.slice(1)}${i}`)
         .mtime.toLocaleDateString("en-US");
     }
