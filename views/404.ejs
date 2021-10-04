@@ -24,9 +24,13 @@
     <meta property="twitter:title" content="<%= process.env.TITLE %>">
     <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
 
+    <script src="https://kit.fontawesome.com/8d6367d1b9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
         body {
             background-color: #121212;
+            transition: background 0.2s linear;
             text-align: center;
             font-family: 'Poppins', sans-serif;
         }
@@ -72,11 +76,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Error 404</h1>
-        <h2>Page Not Found</h2>
+        <h1 id= "main-text1">Error 404</h1>
+        <h2 id= "main-text2">Page Not Found</h2>
     </div>
+    <div onclick="myFunction(this)" class="toggler">
+        <i id="icon" class="fas fa-moon"></i>
+    </div>
+    <script>
+      function myFunction(x) {
+        document.getElementById("icon").classList.toggle("fa-moon")
+        document.getElementById("icon").classList.toggle("fa-sun")
+        document.body.classList.toggle('light');
+        document.getElementById("main-text1").classList.toggle("black-text")
+        document.getElementById("main-text2").classList.toggle("black-text")
+        document.getElementById("footer1").classList.toggle("black-text")
+        document.getElementById("footer2").classList.toggle("black-text")
+      };
+    </script>
     <footer class="footer">
-        <p>Made by <a href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
+        <p id="footer1">Made by <a id="footer2" href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
     </footer>
 </body>
 </html>
