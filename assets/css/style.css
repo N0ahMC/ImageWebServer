@@ -113,3 +113,7 @@ footer {
   opacity: 0.87;
   text-decoration: none;
 }
+
+.black-text {
+  color: #000000;
+}
