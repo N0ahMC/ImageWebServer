@@ -64,8 +64,8 @@ header {
 .toggler {
   float: right;
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 15px;
+  right: 15px;
   background-color: #000000;
   border-radius: 50px;
   cursor: pointer;
@@ -74,6 +74,7 @@ header {
   justify-content: center;
   height: 50px;
   width: 50px;
+  z-index: 1;
 }
 
 .fa-moon {
