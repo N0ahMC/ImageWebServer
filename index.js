@@ -15,13 +15,17 @@ if (!process.env.PORT && !fs.existsSync("./.env"))
     "The .env file could not be found.\nPlease check README.md for more information"
   );
 
-  if (process.env.LOGO_FILE_NAME && !fs.existsSync(`assets/images/${process.env.LOGO_FILE_NAME}`)) {
-    console.warn(
-      "\x1b[33m",
-      "[WARNING]",
-      "\x1b[0m",
-      "The logo file could not be found.\nPlease check your .env configuration."
-    )}
+if (
+  process.env.LOGO_FILE_NAME &&
+  !fs.existsSync(`assets/images/${process.env.LOGO_FILE_NAME}`)
+) {
+  console.warn(
+    "\x1b[33m",
+    "[WARNING]",
+    "\x1b[0m",
+    "The logo file could not be found.\nPlease check your .env configuration."
+  );
+}
 
 app.use(
   helmet({
