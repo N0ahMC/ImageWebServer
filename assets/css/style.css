@@ -64,8 +64,8 @@ header {
 .toggler {
   float: right;
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 15px;
+  right: 15px;
   background-color: #000000;
   border-radius: 50px;
   cursor: pointer;
@@ -74,6 +74,7 @@ header {
   justify-content: center;
   height: 50px;
   width: 50px;
+  z-index: 1;
 }
 
 .fa-moon {
@@ -84,6 +85,33 @@ header {
 .fa-sun {
   color: #f39c12;
   font-size: 25px;
+}
+
+footer {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#information {
+  color: #edf0f1;
+  font-family: "Poppins", sans-serif;
+}
+
+#information.light {
+  color: #121212;
+}
+
+.navbar-brand {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  opacity: 0.87;
+  text-decoration: none;
 }
 
 .black-text {

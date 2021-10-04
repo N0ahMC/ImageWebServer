@@ -15,6 +15,18 @@ if (!process.env.PORT && !fs.existsSync("./.env"))
     "The .env file could not be found.\nPlease check README.md for more information"
   );
 
+if (
+  process.env.LOGO_FILE_NAME &&
+  !fs.existsSync(`assets/images/${process.env.LOGO_FILE_NAME}`)
+) {
+  console.warn(
+    "\x1b[33m",
+    "[WARNING]",
+    "\x1b[0m",
+    "The logo file could not be found.\nPlease check your .env configuration."
+  );
+}
+
 app.use(
   helmet({
     contentSecurityPolicy: false,
@@ -27,8 +39,10 @@ app.use("/assets", express.static("assets"));
 app.use("/image", express.static("images"));
 app.use(fileUpload());
 const types = ["", ".png", ".jpg", ".jpeg"];
-let Rpath = "";
-let Rtype = "";
+let Fpath = "";
+let Ftype = "";
+let Fsize = "";
+let Fdate = "";
 app.post("/upload", (req, res) => {
   try {
     if (req.headers.key !== process.env.KEY) {
@@ -51,7 +65,7 @@ app.post("/upload", (req, res) => {
           message: "File just got uploaded!",
           url: safeSuffix,
         });
-        if (process.env.ADVANCED_LOGGING) {
+        if (process.env.ADVANCED_LOGGING == "true") {
           console.log(`File ${safeSuffix} uploaded!`);
         }
       }
@@ -68,17 +82,29 @@ app.get("/robots.txt", (req, res) => {
 app.get("/:image", (req, res) => {
   types.forEach((i) => {
     if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
-      Rpath = req.path.slice(1);
-      Rtype = i;
+      const size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
+      Fpath = req.path.slice(1);
+      Ftype = i;
+      Fsize =
+        size > 1000
+          ? `${Math.round((size * 100) / 1000) / 100} MB`
+          : `${Math.round(size * 100) / 100} KB`;
+      Fdate = fs
+        .statSync(`images/${req.path.slice(1)}${i}`)
+        .mtime.toLocaleDateString("en-US");
     }
   });
-  const fullPath = Rpath + Rtype;
+  const fullPath = Fpath + Ftype;
   if (fullPath != "" && fs.existsSync(`images/${fullPath}`)) {
     res.render("image", {
-      path: Rpath,
-      type: Rtype,
+      path: Fpath,
+      type: Ftype,
+      fullPath: fullPath,
+      size: Fsize,
+      date: Fdate,
+      fileExists: fs.existsSync,
     });
-    if (process.env.ADVANCED_LOGGING && fullPath) {
+    if (process.env.ADVANCED_LOGGING == "true" && fullPath) {
       console.log(`File ${fullPath} viewed!`);
     }
   } else {
