@@ -42,10 +42,7 @@ header {
     display: initial;
   }
 }
-.ss-image {
-  display: inline-block;
-  height: 100%;
-}
+
 .ss-image > img {
   position: absolute;
   top: 0;
@@ -91,7 +88,7 @@ footer {
   width: 100%;
   height: 70px;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
