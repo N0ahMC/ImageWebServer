@@ -31,8 +31,8 @@
     <body>
         <header>
             <a class="navbar-brand" href="<%= process.env.DOMAIN %>">
-                <% if(fileExists("assets/images/logo.png")) { %>
-                    <img src="assets/images/logo.png" alt="Logo" height="30">
+                <% if(process.env.LOGO_FILE_NAME && fileExists(`assets/images/${process.env.LOGO_FILE_NAME}`)) { %>
+                    <img src="assets/images/<%= process.env.LOGO_FILE_NAME %>"  alt="<%= process.env.TITLE %>" height="30">
                 <% } else { %>
                     <%= process.env.TITLE %>
                 <% } %>
