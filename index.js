@@ -53,7 +53,7 @@ app.post("/upload", (req, res) => {
           message: "File just got uploaded!",
           url: safeSuffix,
         });
-        if (process.env.ADVANCED_LOGGING) {
+        if (process.env.ADVANCED_LOGGING == "true") {
           console.log(`File ${safeSuffix} uploaded!`);
         }
       }
@@ -69,7 +69,7 @@ app.get("/robots.txt", (req, res) => {
 });
 app.get("/:image", (req, res) => {
   types.forEach((i) => {
-    if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {tream
+    if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
       const size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
       Fpath = req.path.slice(1);
       Ftype = i;
@@ -91,7 +91,7 @@ app.get("/:image", (req, res) => {
       size: Fsize,
       date: Fdate,
     });
-    if (process.env.ADVANCED_LOGGING && fullPath) {
+    if (process.env.ADVANCED_LOGGING == "true" && fullPath) {
       console.log(`File ${fullPath} viewed!`);
     }
   } else {
