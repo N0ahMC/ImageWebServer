@@ -105,3 +105,11 @@ footer {
 #information.light {
   color: #121212;
 }
+
+.navbar-brand {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  opacity: 0.87;
+  text-decoration: none;
+}

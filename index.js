@@ -90,6 +90,7 @@ app.get("/:image", (req, res) => {
       fullPath: fullPath,
       size: Fsize,
       date: Fdate,
+      fileExists: fs.existsSync,
     });
     if (process.env.ADVANCED_LOGGING == "true" && fullPath) {
       console.log(`File ${fullPath} viewed!`);

@@ -30,8 +30,14 @@
       </head>
     <body>
         <header>
-            <a class="navbar-brand" href="<%= process.env.DOMAIN %>"><img src="assets/images/logo.png" alt="Logo" height="30"></a>
-              <a class="btn" href="image/<%= fullPath %>" download>
+            <a class="navbar-brand" href="<%= process.env.DOMAIN %>">
+                <% if(fileExists("assets/images/logo.png")) { %>
+                    <img src="assets/images/logo.png" alt="Logo" height="30">
+                <% } else { %>
+                    <%= process.env.TITLE %>
+                <% } %>
+            </a>
+            <a class="btn" href="image/<%= fullPath %>" download>
                 <span class="icon">
                   <i class="fas fa-cloud-download-alt"></i>
                 </span>
