@@ -34,6 +34,16 @@
             text-align: center;
             font-family: 'Poppins', sans-serif;
         }
+        header {
+            background: inherit;
+            display: flex;
+            justify-content: flex-end;
+        }
+        @media only screen and (max-width: 800px) {
+          .btn {
+            display: block;
+          }
+        }
         h1 {
             color: white;
             font-size: 50px;
@@ -75,6 +85,11 @@
     </style>
 </head>
 <body>
+    <header>
+        <a class="btn">
+            <strong>Login</strong>
+        </a>
+    </header>
     <div class="container">
         <h1 id="main-text"><%= process.env.TITLE || '📸 Image Web Server' %></h1>
         <h2><%= process.env.DESCRIPTION %></h2>
