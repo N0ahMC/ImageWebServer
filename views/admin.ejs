@@ -105,7 +105,7 @@
         <div class="images">
             <ul>
                 <% for(var i = 0; i < images.length; i++) { %>
-                    <li class="text"><%= images[i].fullPath %> - <%= images[i].size %> (<%= images[i].date %>)</li>
+                    <li class="text"><a class="text" href="<%= process.env.DOMAIN %>/<%= images[i].fullPath %>"><%= images[i].fullPath %></a> - <%= images[i].size %> (<%= images[i].date %>)</li>
                 <% } %>
             </ul>
         </div>
@@ -114,8 +114,6 @@
         <i id="icon" class="fas fa-moon"></i>
     </div>
     <script>
-      const images = <%= statistics.totalNb %>;
-
       function myFunction(x) {
         document.getElementById("icon").classList.toggle("fa-moon")
         document.getElementById("icon").classList.toggle("fa-sun")
