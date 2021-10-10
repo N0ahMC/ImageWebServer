@@ -119,7 +119,9 @@ app.post("/admin", (req, res) => {
     }
 });
 app.get("/:image", (req, res) => {
-  types.forEach((i) => {
+    Fpath = "";
+    Ftype = "";
+    types.forEach((i) => {
     if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
       const size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
       Fpath = req.path.slice(1);
