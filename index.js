@@ -82,46 +82,55 @@ app.get("/robots.txt", (req, res) => {
   res.send("User-agent: *\nAllow: /$\nDisallow: /");
 });
 app.get("/admin", (req, res) => {
-    res.render("login");
+  res.render("login");
 });
 app.post("/admin", (req, res) => {
-    if (req.body.password === process.env.KEY) {
-        let images = [];
-        fs.readdirSync("images/").forEach((image) => {
-            images.push({
-                fullPath: image,
-                size: fs.statSync(`images/${image}`).size / 1000,
-                date: fs.statSync(`images/${image}`).mtime.toLocaleDateString("en-US"),
-            })
-        });
-        images.sort((a, b) => a - b);
-        const totalSize = images.reduce(((previousValue, initialValue) => previousValue + initialValue.size), 0);
-        const statistics = {
-            totalNb: images.length,
-            mostRecentUpload: images[0].date,
-            totalSize: totalSize > 1000
-                ? `${Math.round((totalSize * 100) / 1000) / 100} MB`
-                : `${Math.round(totalSize * 100) / 100} KB`,
-        };
-        images = images.map((image) => image.size > 1000
-            ? { ...image, size: `${Math.round((image.size * 100) / 1000) / 100} MB`}
-            : { ...image, size: `${Math.round(image.size * 100) / 100} KB`});
-        console.log('Login successful!')
-        res.render("admin", {
-            statistics,
-            images,
-        });
-    } else {
-        console.log('Failed to login!');
-        res.render("404", {
-            path: req.path.slice(1),
-        });
-    }
+  if (req.body.password === process.env.KEY) {
+    let images = [];
+    fs.readdirSync("images/").forEach((image) => {
+      images.push({
+        fullPath: image,
+        size: fs.statSync(`images/${image}`).size / 1000,
+        date: fs.statSync(`images/${image}`).mtime.toLocaleDateString("en-US"),
+      });
+    });
+    images.sort((a, b) => a - b);
+    const totalSize = images.reduce(
+      (previousValue, initialValue) => previousValue + initialValue.size,
+      0
+    );
+    const statistics = {
+      totalNb: images.length,
+      mostRecentUpload: images[0].date,
+      totalSize:
+        totalSize > 1000
+          ? `${Math.round((totalSize * 100) / 1000) / 100} MB`
+          : `${Math.round(totalSize * 100) / 100} KB`,
+    };
+    images = images.map((image) =>
+      image.size > 1000
+        ? {
+            ...image,
+            size: `${Math.round((image.size * 100) / 1000) / 100} MB`,
+          }
+        : { ...image, size: `${Math.round(image.size * 100) / 100} KB` }
+    );
+    console.log("Login successful!");
+    res.render("admin", {
+      statistics,
+      images,
+    });
+  } else {
+    console.log("Failed to login!");
+    res.render("404", {
+      path: req.path.slice(1),
+    });
+  }
 });
 app.get("/:image", (req, res) => {
-    Fpath = "";
-    Ftype = "";
-    types.forEach((i) => {
+  Fpath = "";
+  Ftype = "";
+  types.forEach((i) => {
     if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
       const size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
       Fpath = req.path.slice(1);
