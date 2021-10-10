@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title><%= process.env.TITLE %></title>
+    <meta name="title" content="<%= process.env.TITLE %>">
+    <meta name="description" content="<%= process.env.DESCRIPTION %>">
+    <meta name="theme-color" content="<%= process.env.COLOR %>">
+    <meta name="msapplication-TileColor" content="<%= process.env.COLOR %>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= process.env.DOMAIN %>">
+    <meta property="og:title" content="<%= process.env.TITLE %>">
+    <meta property="og:description" content="<%= process.env.DESCRIPTION %>">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<%= process.env.DOMAIN %>">
+    <meta property="twitter:title" content="<%= process.env.TITLE %>">
+    <meta property="twitter:description" content="<%= process.env.DESCRIPTION %>">
+
+    <script src="https://kit.fontawesome.com/8d6367d1b9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        body {
+          text-align: center;
+          font-family: 'Poppins', sans-serif;
+        }
+        .container {
+          height: 200px;
+          width: 100%;
+          margin: auto;
+        }
+        .statistics {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 5%;
+        }
+        .statistics div {
+          width: 30%;
+          height: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .statistics div span {
+          color: white;
+        }
+        .images {
+          height: 50%;
+        }
+        ul {
+        }
+        li {
+          color: white;
+          margin: 15px 0;
+        }
+        .footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          color: white;
+          font-family: 'Poppins', sans-serif;
+          text-align: center;
+          opacity: 0.60;
+        }
+        a {
+          color: white;
+        }
+        a:hover {
+          color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="navbar-brand" href="<%= process.env.DOMAIN %>">
+            <% if(process.env.LOGO_FILE_NAME && fileExists(`assets/images/${process.env.LOGO_FILE_NAME}`)) { %>
+                <img src="assets/images/<%= process.env.LOGO_FILE_NAME %>"  alt="<%= process.env.TITLE %>" height="30">
+            <% } else { %>
+                <%= process.env.TITLE %>
+            <% } %>
+        </a>
+    </header>
+    <div class="container">
+        <div class="statistics">
+            <div>
+                <span class="text">Number of images : <%= statistics.totalNb %></span>
+            </div>
+            <div>
+                <span class="text">Last image upload : <%= statistics.mostRecentUpload %></span>
+            </div>
+            <div>
+                <span class="text">Total used size : <%= statistics.totalSize %></span>
+            </div>
+        </div>
+        <div class="images">
+            <ul>
+                <% for(var i = 0; i < images.length; i++) { %>
+                    <li class="text"><%= images[i].fullPath %> - <%= images[i].size %> (<%= images[i].date %>)</li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <div onclick="myFunction(this)" class="toggler">
+        <i id="icon" class="fas fa-moon"></i>
+    </div>
+    <script>
+      const images = <%= statistics.totalNb %>;
+
+      function myFunction(x) {
+        document.getElementById("icon").classList.toggle("fa-moon")
+        document.getElementById("icon").classList.toggle("fa-sun")
+        document.body.classList.toggle('light');
+        for (var i = 0; i < document.getElementsByClassName("text").length; i++) {
+          document.getElementsByClassName("text")[i].classList.toggle("black-text");
+        }
+        document.getElementById("footer1").classList.toggle("black-text")
+        document.getElementById("footer2").classList.toggle("black-text")
+      };
+    </script>
+    <footer class="footer">
+        <p id="footer1">Made by <a id="footer2" href="https://github.com/N0ahMC/ImageWebServer"><b>N0ahMC</b></a></p>
+    </footer>
+</body>
+</html>
