@@ -1,11 +1,10 @@
 {
   "name": "imagewebserver",
-  "version": "1.0.3",
-  "description": "A simple image uploader website for use with screenshot applications such as ShareX.",
+  "version": "1.0.0",
+  "description": "Share images",
   "main": "index.js",
   "scripts": {
-    "start": "npm i && node index.js",
-    "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,17 +12,7 @@
     "url": "git+https://github.com/N0ahMC/ImageWebServer.git"
   },
   "keywords": [
-    "sharex",
-    "image-viewer",
-    "file-upload-server",
-    "image-uploader",
-    "file-uploader",
-    "image-server",
-    "sharex-upload",
-    "sharex-server",
-    "sharexserver",
-    "sharex-uploader",
-    "sharex-cdn"
+    "sharex"
   ],
   "author": "N0ahMC",
   "license": "MIT",
@@ -32,13 +21,10 @@
   },
   "homepage": "https://github.com/N0ahMC/ImageWebServer#readme",
   "dependencies": {
-    "dotenv": "^10.0.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "helmet": "^4.6.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.13"
   }
 }
