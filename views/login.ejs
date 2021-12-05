@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Primary Meta Tags -->
     <title><%= process.env.TITLE %></title>
     <meta name="title" content="<%= process.env.TITLE %>">
@@ -17,7 +17,7 @@
     <meta property="og:url" content="<%= process.env.DOMAIN %>">
     <meta property="og:title" content="<%= process.env.TITLE %>">
     <meta property="og:description" content="<%= process.env.DESCRIPTION %>">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<%= process.env.DOMAIN %>">
@@ -29,42 +29,39 @@
 
     <style>
         body {
-            background-color: #121212;
-            transition: background 0.2s linear;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-        }
-        header {
-            background: inherit;
-            display: flex;
-            justify-content: flex-end;
-        }
-        @media only screen and (max-width: 800px) {
-          .btn {
-            display: block;
-          }
-        }
-        h1 {
-            color: white;
-            font-size: 50px;
-            font-weight: 700;
-            opacity: 0.87;
-        }
-        h2 {
-            color: white;
-            font-style: italic;
-            font-size: 30px;
-            opacity: 0.60;
+          text-align: center;
+          font-family: 'Poppins', sans-serif;
         }
         .container {
-            height: 200px;
-            width: 100%;
-            position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
+          height: 200px;
+          width: 100%;
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          margin: auto;
+        }
+        form {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        label {
+          color: white;
+          margin-right: 10px;
+        }
+        .black-text {
+          color: black;
+        }
+        input {
+          padding: 15px 30px;
+        }
+        button {
+          border: none;
+          width: 100px;
+          height: 40px;
+          margin-left: 20px;
         }
         .footer {
             position: fixed;
@@ -77,22 +74,24 @@
             opacity: 0.60;
         }
         a {
-            color: white;
+          color: white;
         }
         a:hover {
-            color: #cccccc;
+          color: #cccccc;
         }
     </style>
 </head>
 <body>
-    <header>
-        <a class="btn" href="/admin">
-            <strong>Login</strong>
-        </a>
-    </header>
     <div class="container">
-        <h1 id="main-text"><%= process.env.TITLE || '📸 Image Web Server' %></h1>
-        <h2><%= process.env.DESCRIPTION %></h2>
+        <form method="post" action="admin">
+          <div>
+            <label for="email" id="label">Enter your key: </label>
+            <input type="password" name="password" id="password" required>
+          </div>
+          <div>
+            <button type="submit">Login</button>
+          </div>
+        </form>
     </div>
     <div onclick="myFunction(this)" class="toggler">
         <i id="icon" class="fas fa-moon"></i>
@@ -102,7 +101,7 @@
         document.getElementById("icon").classList.toggle("fa-moon")
         document.getElementById("icon").classList.toggle("fa-sun")
         document.body.classList.toggle('light');
-        document.getElementById("main-text").classList.toggle("black-text")
+        document.getElementById("label").classList.toggle("black-text")
         document.getElementById("footer1").classList.toggle("black-text")
         document.getElementById("footer2").classList.toggle("black-text")
       };
