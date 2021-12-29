@@ -119,6 +119,7 @@ app.post("/admin", (req, res) => {
     res.render("admin", {
       statistics,
       images,
+      fileExists: fs.existsSync,
     });
   } else {
     console.log("Failed to login!");
