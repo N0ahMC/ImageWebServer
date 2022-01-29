@@ -53,8 +53,9 @@ header {
   bottom: 0;
   left: 0;
   display: block;
-  max-height: 100%;
   margin: auto;
+  max-width: 90%;
+  max-height: 70%;
 }
 .ss-image {
   display: inline;
