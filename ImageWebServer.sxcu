@@ -2,8 +2,8 @@
   "Name": "ImageWebServer",
   "DestinationType": "ImageUploader",
   "RequestType": "POST",
-  "RequestURL": "https://YOUR_DOMAIN.COM/upload",
-  "FileFormName": "sharex",
+  "RequestURL": "https://YOUR_DOMAIN.COM/",
+  "FileFormName": "file",
   "Headers": {
     "key": "YOUR_KEY_HERE"
   },

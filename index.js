@@ -1,10 +1,8 @@
 console.clear();
-const express = require("express");
-const helmet = require("helmet");
+const fastify = require("fastify")();
+const fastifyStatic = require("fastify-static");
 require("dotenv").config();
-const app = express();
 const fs = require("fs");
-const fileUpload = require("express-fileupload");
 const path = require("path");
 
 if (!process.env.PORT && !fs.existsSync("./.env"))
@@ -27,64 +25,72 @@ if (
   );
 }
 
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
-);
+fastify.register(require("fastify-helmet"), {
+  contentSecurityPolicy: false,
+});
 
-app.use(express.urlencoded());
+fastify.register(require("point-of-view"), {
+  engine: {
+    ejs: require("ejs"),
+  },
+});
 
-app.set("view engine", "ejs");
+fastify.register(fastifyStatic, {
+  root: path.join(__dirname, "assets"),
+  prefix: "/assets",
+});
 
-app.use("/assets", express.static("assets"));
-app.use("/image", express.static("images"));
-app.use(fileUpload());
+fastify.register(require("fastify-formbody"));
+
+fastify.register(fastifyStatic, {
+  root: path.join(__dirname, "images"),
+  prefix: "/image",
+  decorateReply: false,
+});
+
+fastify.register(require("fastify-file-upload"));
 const types = ["", ".png", ".jpg", ".jpeg"];
 let Fpath = "";
 let Ftype = "";
 let Fsize = "";
 let Fdate = "";
-app.post("/upload", (req, res) => {
+fastify.post("/", async (req, res) => {
   try {
     if (req.headers.key !== process.env.KEY) {
       return res.status(403).send({ status: 403, message: "Invalid token" });
-    } else {
-      if (!req.files) {
-        res.status(404).send({
-          status: 404,
-          message: "No file uploaded",
-        });
-      } else {
-        let avatar = req.files.sharex;
-        let safeSuffix = path
-          .normalize(avatar.name)
-          .replace(/^(\.\.(\/|\\|$))+/, "");
-        let safeJoin = path.join("./images/", safeSuffix);
-        avatar.mv(safeJoin);
-        res.send({
-          status: 200,
-          message: "File just got uploaded!",
-          url: safeSuffix,
-        });
-        if (process.env.ADVANCED_LOGGING == "true") {
-          console.log(`File ${safeSuffix} uploaded!`);
-        }
-      }
+    }
+    let file = req.body?.file;
+
+    if (!file) {
+      return res.status(404).send({
+        status: 404,
+        message: "No file uploaded",
+      });
+    }
+    let safeSuffix = path.normalize(file.name).replace(/^(\.\.(\/|\\|$))+/, "");
+    let safeJoin = path.join("./images/", safeSuffix);
+    file.mv(safeJoin);
+    res.send({
+      status: 200,
+      message: "File just got uploaded!",
+      url: safeSuffix,
+    });
+    if (process.env.ADVANCED_LOGGING == "true") {
+      console.log(`File ${safeSuffix} uploaded!`);
     }
   } catch (e) {
     console.error(e);
     return res.status(500).json(e);
   }
 });
-app.get("/robots.txt", (req, res) => {
+fastify.get("/robots.txt", (req, res) => {
   res.type("text/plain");
   res.send("User-agent: *\nAllow: /$\nDisallow: /");
 });
-app.get("/admin", (req, res) => {
-  res.render("login");
+fastify.get("/admin", (req, res) => {
+  res.view("views/login");
 });
-app.post("/admin", (req, res) => {
+fastify.post("/admin", (req, res) => {
   if (req.body.password === process.env.KEY) {
     let images = [];
     fs.readdirSync("images/").forEach((image) => {
@@ -116,38 +122,43 @@ app.post("/admin", (req, res) => {
         : { ...image, size: `${Math.round(image.size * 100) / 100} KB` }
     );
     console.log("Login successful!");
-    res.render("admin", {
+    res.view("views/admin", {
       statistics,
       images,
       fileExists: fs.existsSync,
     });
   } else {
     console.log("Failed to login!");
-    res.render("404", {
-      path: req.path.slice(1),
+    res.view("views/404", {
+      path: req.url,
     });
   }
 });
-app.get("/:image", (req, res) => {
+fastify.get("/", (req, res) => {
+  res.view("views/index", {
+    path: req.url,
+  });
+});
+fastify.get("/:image", (req, res) => {
   Fpath = "";
   Ftype = "";
   types.forEach((i) => {
-    if (fs.existsSync(`images/${req.path.slice(1)}${i}`)) {
-      const size = fs.statSync(`images/${req.path.slice(1)}${i}`).size / 1000;
-      Fpath = req.path.slice(1);
+    if (fs.existsSync(`images/${req.url}${i}`)) {
+      const size = fs.statSync(`images/${req.url}${i}`).size / 1000;
+      Fpath = req.url;
       Ftype = i;
       Fsize =
         size > 1000
           ? `${Math.round((size * 100) / 1000) / 100} MB`
           : `${Math.round(size * 100) / 100} KB`;
       Fdate = fs
-        .statSync(`images/${req.path.slice(1)}${i}`)
+        .statSync(`images/${req.url}${i}`)
         .mtime.toLocaleDateString("en-US");
     }
   });
   const fullPath = Fpath + Ftype;
   if (fullPath != "" && fs.existsSync(`images/${fullPath}`)) {
-    res.render("image", {
+    res.view("views/image", {
       path: Fpath,
       type: Ftype,
       fullPath: fullPath,
@@ -159,22 +170,22 @@ app.get("/:image", (req, res) => {
       console.log(`File ${fullPath} viewed!`);
     }
   } else {
-    res.render("404", {
-      path: req.path.slice(1),
+    res.view("views/404", {
+      path: req.url,
     });
   }
 });
-app.get("/", (req, res) => {
-  res.render("index", {
-    path: req.path.slice(1),
-  });
-});
 
-app.listen(process.env.PORT, () => {
-  console.log(
-    "\x1b[32m",
-    "[READY]",
-    "\x1b[0m",
-    `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
-  );
+fastify.listen(process.env.PORT, (err) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  } else {
+    console.log(
+      "\x1b[32m",
+      "[READY]",
+      "\x1b[0m",
+      `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
+    );
+  }
 });
