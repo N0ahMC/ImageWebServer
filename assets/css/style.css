@@ -55,7 +55,7 @@ header {
   display: block;
   margin: auto;
   max-width: 90%;
-  max-height: 70%;
+  max-height: 70vh;
 }
 .ss-image {
   display: inline;

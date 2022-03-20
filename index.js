@@ -5,14 +5,23 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 
-if (!process.env.PORT && !fs.existsSync("./.env"))
-  return console.error(
+if (!process.env.PORT && !fs.existsSync("./.env")) {
+  console.error(
     "\x1b[31m",
     "[ERROR]",
     "\x1b[0m",
     "The .env file could not be found.\nPlease check README.md for more information"
   );
-
+  process.exit(1);
+}
+if (!process.env.KEY || process.env.KEY == "CHANGE_ME") {
+  console.warn(
+    "\x1b[33m",
+    "[WARNING]",
+    "\x1b[0m",
+    "Your key has not been set.\nPlease check your .env configuration."
+  );
+}
 if (
   process.env.LOGO_FILE_NAME &&
   !fs.existsSync(`assets/images/${process.env.LOGO_FILE_NAME}`)
