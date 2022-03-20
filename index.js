@@ -187,14 +187,12 @@ fastify.get("/:image", (req, res) => {
 
 fastify.listen(process.env.PORT, (err) => {
   if (err) {
-    console.error(err);
-    process.exit(1);
-  } else {
-    console.log(
-      "\x1b[32m",
-      "[READY]",
-      "\x1b[0m",
-      `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
-    );
+    throw new Error(err);
   }
+  console.log(
+    "\x1b[32m",
+    "[READY]",
+    "\x1b[0m",
+    `ImageWebServer running on ${process.env.DOMAIN}, using port ${process.env.PORT}!`
+  );
 });
