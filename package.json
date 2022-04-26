@@ -33,7 +33,7 @@
   "homepage": "https://github.com/N0ahMC/ImageWebServer#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.7",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "helmet": "^4.6.0"
