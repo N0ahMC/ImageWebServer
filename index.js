@@ -6,7 +6,6 @@ const app = express();
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
 const path = require("path");
-app.locals.fs = fs;
 
 if (!process.env.PORT && !fs.existsSync("./.env"))
   return console.error(
@@ -68,7 +67,7 @@ app.post("/upload", (req, res) => {
           message: "File just got uploaded!",
           url: safeSuffix,
         });
-        if (process.env.ADVANCED_LOGGING === "true") {
+        if (process.env.ADVANCED_LOGGING == "true") {
           console.log(`File ${safeSuffix} uploaded!`);
         }
       }
@@ -146,7 +145,7 @@ app.get("/:image", (req, res) => {
     }
   });
   const fullPath = Fpath + Ftype;
-  if (fullPath !== "" && fs.existsSync(`images/${fullPath}`)) {
+  if (fullPath != "" && fs.existsSync(`images/${fullPath}`)) {
     res.render("image", {
       path: Fpath,
       type: Ftype,
@@ -155,7 +154,7 @@ app.get("/:image", (req, res) => {
       date: Fdate,
       fileExists: fs.existsSync,
     });
-    if (process.env.ADVANCED_LOGGING === "true" && fullPath) {
+    if (process.env.ADVANCED_LOGGING == "true" && fullPath) {
       console.log(`File ${fullPath} viewed!`);
     }
   } else {
