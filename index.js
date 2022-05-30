@@ -14,7 +14,7 @@ if (!process.env.PORT && !fs.existsSync("./.env")) {
   );
   process.exit(1);
 }
-if (!process.env.KEY || process.env.KEY == "CHANGE_ME") {
+if (!process.env.KEY || process.env.KEY === "CHANGE_ME") {
   console.warn(
     "\x1b[33m",
     "[WARNING]",
@@ -68,7 +68,7 @@ fastify.post("/", async (req, res) => {
     if (req.headers.key !== process.env.KEY) {
       return res.status(403).send({ status: 403, message: "Invalid token" });
     }
-    let file = req.body?.file;
+    const file = req.body?.file;
 
     if (!file) {
       return res.status(404).send({
@@ -76,15 +76,17 @@ fastify.post("/", async (req, res) => {
         message: "No file uploaded",
       });
     }
-    let safeSuffix = path.normalize(file.name).replace(/^(\.\.(\/|\\|$))+/, "");
-    let safeJoin = path.join("./images/", safeSuffix);
+    const safeSuffix = path
+      .normalize(file.name)
+      .replace(/^(\.\.(\/|\\|$))+/, "");
+    const safeJoin = path.join("./images/", safeSuffix);
     file.mv(safeJoin);
     res.send({
       status: 200,
       message: "File just got uploaded!",
       url: safeSuffix,
     });
-    if (process.env.ADVANCED_LOGGING == "true") {
+    if (process.env.ADVANCED_LOGGING === "true") {
       console.log(`File ${safeSuffix} uploaded!`);
     }
   } catch (e) {
@@ -166,16 +168,16 @@ fastify.get("/:image", (req, res) => {
     }
   });
   const fullPath = Fpath + Ftype;
-  if (fullPath != "" && fs.existsSync(`images/${fullPath}`)) {
+  if (fullPath !== "" && fs.existsSync(`images/${fullPath}`)) {
     res.view("views/image", {
       path: Fpath,
       type: Ftype,
-      fullPath: fullPath,
+      fullPath,
       size: Fsize,
       date: Fdate,
       fileExists: fs.existsSync,
     });
-    if (process.env.ADVANCED_LOGGING == "true" && fullPath) {
+    if (process.env.ADVANCED_LOGGING === "true" && fullPath) {
       console.log(`File ${fullPath} viewed!`);
     }
   } else {
