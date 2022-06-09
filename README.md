@@ -65,12 +65,6 @@ To get a local copy up and running follow these simple steps.
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-<!-- CONTACT -->
-
-## Contact
-
-Noah - Noahh#6969 on discord - noah@n0ahmc.com
-
 Project Link: [https://github.com/N0ahMC/ImageWebServer](https://github.com/N0ahMC/ImageWebServer)
 
 <!-- MARKDOWN LINKS & IMAGES -->
